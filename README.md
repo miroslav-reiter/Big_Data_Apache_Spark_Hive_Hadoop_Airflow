@@ -17,6 +17,7 @@
 # 🔍 1. Úvod do veľkých dát a Apache Spark
 
 Apache Spark je výkonný open-source engine na spracovanie veľkých dát v reálnom čase. Podporuje paralelné výpočty v pamäti a je široko používaný v oblasti dátovej analytiky, strojového učenia a streamovania.
+Apache Spark je výkonný, škálovateľný a flexibilný nástroj pre spracovanie veľkých dát. Je distribuovaný pod **licenciou Apache 2.0**
 
 ---
 
@@ -595,29 +596,4 @@ V tejto záverečnej kapitole nájdete odporúčané knihy, dokumentáciu, onlin
 - 📦 Automatizujte pomocou **Airflow, Prefect alebo Luigi**
 - 🧱 Segmentujte pipeline: ETL, transformácie, analytika, ML
 - 🔄 Sledujte **verzie Spark a kompatibilitu knižníc**
-
----
-
-## 🧾 Licencia a komunita
-
-- Apache Spark je distribuovaný pod **licenciou Apache 2.0**
-- Komunita je aktívna – sledujte:
-  - mailing list: `user@spark.apache.org`
-  - Stack Overflow: [#apache-spark](https://stackoverflow.com/questions/tagged/apache-spark)
-  - GitHub issues a pull requests
-
----
-
-## 🧠 Zhrnutie
-
-Apache Spark je výkonný, škálovateľný a flexibilný nástroj pre spracovanie veľkých dát. Pokročilý používateľ by mal ovládať:
-
-- efektívne čítanie a zapisovanie dát,
-- optimalizáciu transformácií,
-- monitorovanie výpočtov,
-- a rozšírenie cez MLlib, Streaming alebo GraphX.
-
-➡️ Pokračujte učením cez reálne projekty a open data.
-
----
 
