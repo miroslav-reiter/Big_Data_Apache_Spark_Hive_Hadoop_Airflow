@@ -1,6 +1,6 @@
 # 🗄️ Online kurz Big Data (Veľké Dáta), Apache Spark, Hive, Apache Hadoop, Apache Airflow
 
-> Praktický kurz pre začiatočníkov – RDD, DataFrame, SparkSQL a distribuované spracovanie dát
+> Praktické kurzy – RDD, DataFrame, SparkSQL a distribuované spracovanie dát
 
 ---
 
