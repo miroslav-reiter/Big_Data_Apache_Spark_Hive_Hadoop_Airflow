@@ -344,7 +344,7 @@ Táto kapitola sa venuje praktickému nastaveniu Apache Spark v lokálnom aj dis
 |------------------|--------------------------|
 | Apache Spark     | 3.5+                     |
 | Java (JDK)       | 17 alebo 21              |
-| Python           | 3.8+                     |
+| Python           | 3.10+                     |
 | PySpark          | najnovšia (`pip install`)|
 | IDE              | VS Code, Jupyter Notebook|
 
