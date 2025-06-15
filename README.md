@@ -5,7 +5,6 @@
 ---
 
 ## 📘 Obsah kurzu
-
 01. [**🔍 Úvod do veľkých dát a Apache Spark**](#uvod-spark)
 02. [**🧱 Práca s RDD a DataFrame**](#rdd-dataframe)
 03. [**🧠 Spark SQL a dopyty nad dátami**](#spark-sql)
@@ -332,7 +331,6 @@ FROM osoby
 ---
 
 <a name="#nastavenie"></a>
-
 # ⚙️ 4. Nastavenie prostredia a Spark UI
 
 Táto kapitola sa venuje praktickému nastaveniu Apache Spark v lokálnom aj distribuovanom režime. Ukážeme si tiež, ako funguje Spark UI – webové rozhranie pre sledovanie a ladenie výpočtov.
@@ -445,6 +443,97 @@ spark = SparkSession.builder     .appName("Aplikacia")     .config("spark.execut
 - PySpark beží v Jupyteri alebo ako samostatný skript.
 - Spark UI poskytuje cenné informácie o výpočtoch a výkone.
 - Parametre SparkSession ovplyvňujú výkon a pamäťové požiadavky.
+
+---
+a name="transformacie"></a>
+
+# 📊 5. Načítanie dát a transformácie v Apache Spark
+
+Apache Spark umožňuje efektívne načítanie veľkého množstva dát z rôznych zdrojov a ich spracovanie pomocou transformácií. V tejto kapitole sa zameriame na praktické príklady práce so súbormi a najčastejšie transformácie nad DataFrame.
+
+---
+
+## 📂 Podporované dátové formáty
+
+| Formát   | Funkcia                                 | Príklad                                      |
+|----------|------------------------------------------|----------------------------------------------|
+| CSV      | `spark.read.csv()`                      | `spark.read.option("header", True).csv(...)` |
+| JSON     | `spark.read.json()`                     | `spark.read.json("data/produkty.json")`      |
+| Parquet  | `spark.read.parquet()`                  | `spark.read.parquet("data/data.parquet")`    |
+| ORC      | `spark.read.orc()`                      | `spark.read.orc("data/data.orc")`            |
+| JDBC     | `spark.read.jdbc()`                     | Načítanie z relačnej databázy                |
+
+---
+
+## 📥 Príklad: Načítanie CSV súboru
+
+```python
+df = spark.read.option("header", True).option("inferSchema", True).csv("data/objednavky.csv")
+df.printSchema()
+df.show(5)
+```
+
+---
+
+## 🔄 Transformácie DataFrame
+
+Spark transformácie sú **lenivé** – nevykonávajú sa ihneď, ale až pri akcii (`show()`, `collect()`, atď.).
+
+### ✅ Bežné transformácie
+
+| Operácia         | Popis                                 | Syntax                                      |
+|------------------|----------------------------------------|---------------------------------------------|
+| `select()`       | Výber stĺpcov                         | `df.select("produkt", "cena")`              |
+| `filter()`       | Filtrovanie riadkov                   | `df.filter(df["cena"] > 100)`               |
+| `withColumn()`   | Pridanie nového stĺpca                | `df.withColumn("DPH", df["cena"] * 0.2)`     |
+| `drop()`         | Odstránenie stĺpca                    | `df.drop("nepotrebny_stlpec")`              |
+| `distinct()`     | Odstránenie duplicitných riadkov      | `df.distinct()`                             |
+| `groupBy()`      | Skupinové operácie                    | `df.groupBy("kategoria").count()`           |
+| `orderBy()`      | Zoradenie                             | `df.orderBy("cena", ascending=False)`       |
+
+---
+
+## 🧪 Príklad: Vytvorenie nového stĺpca s DPH
+
+```python
+df = df.withColumn("cena_s_DPH", df["cena"] * 1.2)
+df.select("produkt", "cena", "cena_s_DPH").show(5)
+```
+
+---
+
+## 🧪 Príklad: Agregácia podľa kategórie
+
+```python
+df.groupBy("kategoria").agg({"cena": "avg", "id": "count"}).show()
+```
+
+---
+
+## 🧪 Príklad: Filtrovanie a triedenie
+
+```python
+df.filter(df["cena"] > 100).orderBy("cena", ascending=False).show(10)
+```
+
+---
+
+## 📦 Ukladanie transformovaných dát
+
+| Formát   | Ukladacia funkcia                        | Príklad                                      |
+|----------|-------------------------------------------|----------------------------------------------|
+| CSV      | `df.write.csv()`                         | `df.write.option("header", True).csv(...)`   |
+| Parquet  | `df.write.parquet()`                     | `df.write.parquet("output/data")`            |
+| JSON     | `df.write.json()`                        | `df.write.json("output/produkty.json")`      |
+
+---
+
+## ✅ Zhrnutie
+
+- Spark umožňuje pracovať s rôznymi typmi dátových formátov.
+- Transformácie sú deklaratívne a spúšťajú sa až pri akciách.
+- DataFrame API poskytuje bohatú sadu funkcií na spracovanie dát.
+- Dáta je možné exportovať späť vo formáte CSV, JSON, Parquet a ďalších.
 
 ---
 
