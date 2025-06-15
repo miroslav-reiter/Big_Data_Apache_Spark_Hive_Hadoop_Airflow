@@ -99,4 +99,122 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 
 ---
 
+<a name="rdd-dataframe"></a>
+# 🧱 2. Práca s RDD a DataFrame v Apache Spark
+
+Apache Spark umožňuje dve hlavné abstrakcie pre prácu s dátami: **RDD (Resilient Distributed Dataset)** a **DataFrame**. V tejto kapitole si vysvetlíme rozdiely, výhody a praktické príklady použitia oboch.
+
+---
+
+## 🧠 Čo je RDD?
+
+**RDD (Resilient Distributed Dataset)** je nízkoúrovňová, nemenná kolekcia objektov, ktorá sa distribuuje medzi uzly v klastri.
+
+### ⚙️ Vlastnosti RDD:
+
+- Immutability – nemenné štruktúry
+- Paralelné spracovanie
+- Fault-tolerance – automatická replikácia a zotavenie
+- Podpora funkcionálnych operácií ako `map()`, `filter()`, `reduce()`
+
+### 🧪 Príklad: Základná práca s RDD
+
+```python
+rdd = spark.sparkContext.parallelize([1, 2, 3, 4, 5])
+rdd_squared = rdd.map(lambda x: x * x)
+print(rdd_squared.collect())  # Výstup: [1, 4, 9, 16, 25]
+```
+
+---
+
+## 📄 Transformácie a akcie na RDD
+
+| Typ operácie   | Príklad           | Popis                                       |
+|----------------|-------------------|---------------------------------------------|
+| Transformácia  | `map()`, `filter()`| Vytvára nový RDD                            |
+| Akcia          | `collect()`, `count()` | Spustí výpočet a vráti výsledok do drivera  |
+
+---
+
+## 📘 Čo je DataFrame?
+
+**DataFrame** je vyššia abstrakcia nad RDD s metadátami (schema), podobná Pandas alebo SQL tabuľke.
+
+### 🧾 Výhody DataFrame:
+
+- Optimalizácia pomocou Catalyst engine
+- Výrazne rýchlejšie spracovanie ako RDD
+- Možnosť používať SQL-like syntax
+- Automatické spracovanie schémy
+
+### 🧪 Príklad: Vytvorenie DataFrame
+
+```python
+from pyspark.sql import Row
+
+df = spark.createDataFrame([Row(meno="Anna", vek=25), Row(meno="Ján", vek=32)])
+df.show()
+```
+
+---
+
+## 🔁 Bežné operácie s DataFrame
+
+```python
+df.filter(df.vek > 30).select("meno").show()
+df.groupBy("vek").count().show()
+```
+
+| Operácia          | Syntax                                     | Popis                           |
+|-------------------|--------------------------------------------|----------------------------------|
+| Filtrovanie       | `df.filter(df.vek > 30)`                   | Výber podľa podmienky           |
+| Výber stĺpcov     | `df.select("meno", "vek")`                 | Výber konkrétnych stĺpcov       |
+| Agregácia         | `df.groupBy("vek").count()`                | Skupinové výpočty               |
+| Triedenie         | `df.orderBy("vek", ascending=False)`       | Zoradenie podľa hodnoty         |
+
+---
+
+## 🔁 Porovnanie RDD vs. DataFrame
+
+| Vlastnosť             | RDD                                 | DataFrame                         |
+|------------------------|--------------------------------------|------------------------------------|
+| API štýl              | Funkcionálny (map, reduce)           | Deklaratívny (SQL-like)            |
+| Optimalizácia         | Bez optimalizácie                    | Catalyst + Tungsten optimizácia    |
+| Výkon                 | Pomalší                              | Rýchlejší                          |
+| Čitateľnosť           | Nižšia (viac kódu)                   | Vyššia (kompaktnejší kód)          |
+| Prístup k schéme      | Nie                                  | Áno                                |
+
+---
+
+## 🔃 Prechod z RDD na DataFrame a späť
+
+```python
+# RDD → DataFrame
+from pyspark.sql import Row
+rdd = spark.sparkContext.parallelize([Row(meno="Eva", vek=29)])
+df = spark.createDataFrame(rdd)
+
+# DataFrame → RDD
+rdd2 = df.rdd
+```
+
+---
+
+## 🧪 Ukážka práce s CSV súborom ako DataFrame
+
+```python
+df_csv = spark.read.csv("data/osoby.csv", header=True, inferSchema=True)
+df_csv.printSchema()
+df_csv.select("meno", "vek").show()
+```
+
+---
+
+## ✅ Zhrnutie
+
+- **RDD** poskytuje nízkoúrovňovú kontrolu nad dátami, vhodné na zložité transformácie.
+- **DataFrame** poskytuje vyšší výkon, čitateľnosť a podporu SQL.
+- V moderných aplikáciách sa odporúča používať **DataFrame API**, ak nie je potrebné niečo špecifické z RDD.
+
+---
 
