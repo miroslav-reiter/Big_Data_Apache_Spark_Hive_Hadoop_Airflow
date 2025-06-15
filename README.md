@@ -216,7 +216,6 @@ df_csv.select("meno", "vek").show()
 ---
 
 <a name="spark-sql"></a>
-
 # 🧠 3. Spark SQL a dopyty nad dátami
 
 Spark SQL je modul Apache Spark, ktorý umožňuje spracovanie štruktúrovaných dát pomocou SQL syntaxe alebo DataFrame API. Kombinuje výkonnosť Spark enginu s jednoduchosťou SQL.
@@ -538,7 +537,6 @@ df.filter(df["cena"] > 100).orderBy("cena", ascending=False).show(10)
 ---
 
 <a name="zdroje"></a>
-
 # 📚 6. Zdroje a odporúčania pre Apache Spark
 
 V tejto záverečnej kapitole nájdete odporúčané knihy, dokumentáciu, online kurzy a nástroje, ktoré vám pomôžu rozšíriť znalosti o Apache Spark. Tiež uvedieme odporúčania pre prax.
