@@ -218,3 +218,118 @@ df_csv.select("meno", "vek").show()
 
 ---
 
+<a name="spark-sql"></a>
+
+# 🧠 3. Spark SQL a dopyty nad dátami
+
+Spark SQL je modul Apache Spark, ktorý umožňuje spracovanie štruktúrovaných dát pomocou SQL syntaxe alebo DataFrame API. Kombinuje výkonnosť Spark enginu s jednoduchosťou SQL.
+
+---
+
+## 📋 Čo je Spark SQL?
+
+Spark SQL umožňuje:
+
+- vykonávať SQL dopyty priamo nad veľkými dátami,
+- manipulovať so štruktúrovanými dátami pomocou DataFrame API,
+- pracovať s rôznymi zdrojmi dát ako CSV, Parquet, Hive, JDBC.
+
+---
+
+## 🔧 Vytvorenie DataFrame tabuľky
+
+### 🧪 Príklad: Načítanie CSV a registrácia ako tabuľka
+
+```python
+df = spark.read.option("header", "true").csv("data/objednavky.csv")
+df.createOrReplaceTempView("objednavky")
+```
+
+Po registrácii môžete nad `objednavky` spúšťať SQL dopyty.
+
+---
+
+## 🧪 Príklady SQL dopytov
+
+```python
+# Výber všetkých stĺpcov
+spark.sql("SELECT * FROM objednavky").show()
+
+# Filtrovanie podľa hodnoty
+spark.sql("SELECT * FROM objednavky WHERE cena > 100").show()
+
+# Skupinové výpočty
+spark.sql("SELECT produkt, COUNT(*) AS pocet FROM objednavky GROUP BY produkt").show()
+```
+
+---
+
+## 📊 Porovnanie: SQL vs. DataFrame API
+
+| Operácia                     | SQL syntax                                                    | DataFrame API                                 |
+|------------------------------|----------------------------------------------------------------|-----------------------------------------------|
+| Výber                        | `SELECT meno FROM zakaznici`                                  | `df.select("meno")`                           |
+| Filtrovanie                  | `SELECT * FROM objednavky WHERE cena > 100`                   | `df.filter(df.cena > 100)`                    |
+| Agregácia                    | `SELECT AVG(cena) FROM objednavky`                            | `df.agg({"cena": "avg"})`                     |
+| Zoskupenie                   | `SELECT produkt, COUNT(*) FROM objednavky GROUP BY produkt`   | `df.groupBy("produkt").count()`              |
+| Triedenie                    | `SELECT * FROM objednavky ORDER BY datum DESC`                | `df.orderBy("datum", ascending=False)`        |
+
+---
+
+## 🗃️ Práca so štruktúrovanými formátmi
+
+### CSV
+
+```python
+df = spark.read.option("header", True).csv("data/objednavky.csv")
+```
+
+### JSON
+
+```python
+df_json = spark.read.json("data/produkty.json")
+```
+
+### Parquet
+
+```python
+df_parquet = spark.read.parquet("data/transakcie.parquet")
+```
+
+---
+
+## 🧠 Optimalizácia Spark SQL
+
+- **Catalyst Optimizer** – analyzuje a optimalizuje logický plán dopytu.
+- **Tungsten Execution Engine** – nízkoúrovňová optimalizácia výpočtov.
+- **Predicate Pushdown** – filtruje dáta už pri ich načítavaní.
+
+➡️ Tieto mechanizmy výrazne zvyšujú výkon pri spracovaní veľkých dát.
+
+---
+
+## 🧪 Pokročilé SQL: JOIN, funkcie, CASE
+
+```sql
+-- Join dvoch tabuliek
+SELECT o.id, o.produkt, z.meno
+FROM objednavky o
+JOIN zakaznici z ON o.zakaznik_id = z.id
+
+-- Prípadová logika
+SELECT meno,
+       CASE WHEN vek >= 18 THEN 'Dospelý' ELSE 'Dieťa' END AS typ
+FROM osoby
+```
+
+---
+
+## ✅ Zhrnutie
+
+- Spark SQL umožňuje prístup k dátam pomocou známej SQL syntaxe.
+- Podporuje integráciu s rôznymi dátovými formátmi (CSV, JSON, Parquet).
+- Výkon zabezpečuje Catalyst a Tungsten optimalizácia.
+- SQL dopyty sú často kombinované s DataFrame API v praxi.
+
+---
+
