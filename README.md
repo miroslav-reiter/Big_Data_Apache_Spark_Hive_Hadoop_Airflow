@@ -537,3 +537,89 @@ df.filter(df["cena"] > 100).orderBy("cena", ascending=False).show(10)
 
 ---
 
+<a name="zdroje"></a>
+
+# 📚 6. Zdroje a odporúčania pre Apache Spark
+
+V tejto záverečnej kapitole nájdete odporúčané knihy, dokumentáciu, online kurzy a nástroje, ktoré vám pomôžu rozšíriť znalosti o Apache Spark. Tiež uvedieme odporúčania pre prax.
+
+---
+
+## 📘 Odporúčané knihy
+
+| Názov | Autor | Popis |
+|-------|-------|-------|
+| *Learning Spark (2nd Edition)* | Jules S. Damji et al. | Výborný úvod do Spark 3 so zameraním na DataFrame API a Structured Streaming |
+| *High Performance Spark* | Holden Karau | Optimalizácia výpočtov, efektívne transformácie a výkon |
+| *Spark in Action* | Jean-Georges Perrin | Praktické príklady a vysvetlenie základov pre začiatočníkov |
+| *Streaming Systems* | Tyler Akidau | Teoretický základ pre spracovanie dátových tokov v reálnom čase |
+
+---
+
+## 🌐 Online dokumentácia a nástroje
+
+| Zdroj | Odkaz |
+|-------|-------|
+| Oficiálna dokumentácia | [https://spark.apache.org/docs/latest/](https://spark.apache.org/docs/latest/) |
+| API Referencia PySpark | [https://spark.apache.org/docs/latest/api/python/](https://spark.apache.org/docs/latest/api/python/) |
+| Spark GitHub | [https://github.com/apache/spark](https://github.com/apache/spark) |
+| Databricks Spark Guide | [https://docs.databricks.com/](https://docs.databricks.com/) |
+
+---
+
+## 🎓 Kurzy a interaktívne platformy
+
+| Platforma | Kurz / Odkaz |
+|-----------|--------------|
+| VITA Academy | [https://www.vita.sk/](https://www.vita.sk/) – praktické kurzy v slovenčine |
+| Datacamp  | Introduction to PySpark |
+| Coursera  | Big Data Analysis with Scala and Spark |
+
+---
+
+## 🛠️ Vývojové prostredia
+
+- **Jupyter Notebook / Lab** – ideálne pre rýchle experimentovanie s PySpark
+- **VS Code** – podpora PySpark cez rozšírenia
+- **JetBrains DataSpell** – profesionálne IDE na prácu s dátami
+- **Databricks Community Edition** – bezplatná platforma pre Spark a ML
+
+---
+
+## ✅ Odporúčania pre prax
+
+- 🧠 Preferujte **DataFrame API** pred RDD pre výkon a čitateľnosť
+- 🔍 Využívajte **Spark UI** (localhost:4040) na ladenie výkonu
+- 🛠 Naučte sa optimalizovať dotazy: `cache()`, `repartition()`, `persist()`
+- 🗃 Používajte **formát Parquet** pre efektívne ukladanie dát
+- 🧪 Testujte na malých vzorkách a nasadzujte na clustri
+- 📊 Sledujte **plán vykonania** (explain) pre optimalizáciu dotazov
+- 📦 Automatizujte pomocou **Airflow, Prefect alebo Luigi**
+- 🧱 Segmentujte pipeline: ETL, transformácie, analytika, ML
+- 🔄 Sledujte **verzie Spark a kompatibilitu knižníc**
+
+---
+
+## 🧾 Licencia a komunita
+
+- Apache Spark je distribuovaný pod **licenciou Apache 2.0**
+- Komunita je aktívna – sledujte:
+  - mailing list: `user@spark.apache.org`
+  - Stack Overflow: [#apache-spark](https://stackoverflow.com/questions/tagged/apache-spark)
+  - GitHub issues a pull requests
+
+---
+
+## 🧠 Zhrnutie
+
+Apache Spark je výkonný, škálovateľný a flexibilný nástroj pre spracovanie veľkých dát. Pokročilý používateľ by mal ovládať:
+
+- efektívne čítanie a zapisovanie dát,
+- optimalizáciu transformácií,
+- monitorovanie výpočtov,
+- a rozšírenie cez MLlib, Streaming alebo GraphX.
+
+➡️ Pokračujte učením cez reálne projekty a open data.
+
+---
+
