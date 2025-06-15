@@ -14,9 +14,7 @@
 06. [**📚 Zdroje a odporúčania pre Apache Spark**](#zdroje)
 
 ---
-
 <a name="uvod-spark"></a>
-
 # 🔍 1. Úvod do veľkých dát a Apache Spark
 
 Apache Spark je výkonný open-source engine na spracovanie veľkých dát v reálnom čase. Podporuje paralelné výpočty v pamäti a je široko používaný v oblasti dátovej analytiky, strojového učenia a streamovania.
@@ -330,6 +328,123 @@ FROM osoby
 - Podporuje integráciu s rôznymi dátovými formátmi (CSV, JSON, Parquet).
 - Výkon zabezpečuje Catalyst a Tungsten optimalizácia.
 - SQL dopyty sú často kombinované s DataFrame API v praxi.
+
+---
+
+<a name="#nastavenie"></a>
+
+# ⚙️ 4. Nastavenie prostredia a Spark UI
+
+Táto kapitola sa venuje praktickému nastaveniu Apache Spark v lokálnom aj distribuovanom režime. Ukážeme si tiež, ako funguje Spark UI – webové rozhranie pre sledovanie a ladenie výpočtov.
+
+---
+
+## 💻 Požiadavky a príprava prostredia
+
+### ✅ Softvérové požiadavky
+
+| Komponent        | Odporúčaná verzia        |
+|------------------|--------------------------|
+| Apache Spark     | 3.5+                     |
+| Java (JDK)       | 17 alebo 21              |
+| Python           | 3.8+                     |
+| PySpark          | najnovšia (`pip install`)|
+| IDE              | VS Code, Jupyter Notebook|
+
+### ✅ Inštalácia PySpark
+
+```bash
+pip install pyspark
+```
+
+---
+
+## 🗂️ Premenné prostredia
+
+Pri spúšťaní Spark aplikácií je potrebné nastaviť Java prostredie:
+
+```bash
+export JAVA_HOME="/path/to/java"
+```
+
+Na Windows:
+
+```cmd
+set JAVA_HOME=C:\Program Files\Java\jdk-17
+```
+
+---
+
+## 🚀 Spustenie SparkSession v Pythone
+
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder     .appName("MojaSparkAplikacia")     .getOrCreate()
+```
+
+### 🧪 Overenie konfigurácie
+
+```python
+print(spark.version)
+print(spark.sparkContext.appName)
+```
+
+---
+
+## 🌐 Spark UI – Webové rozhranie
+
+Po spustení aplikácie je dostupné na:
+
+```
+http://localhost:4040
+```
+
+### 📊 Čo Spark UI zobrazuje?
+
+| Sekcia        | Popis                                           |
+|---------------|--------------------------------------------------|
+| Jobs          | Prehľad všetkých spustených úloh                 |
+| Stages        | Detaily o jednotlivých výpočtových fázach        |
+| Storage       | Informácie o RDD a DataFrame v pamäti            |
+| Environment   | Nastavenia SparkSession a premenné               |
+| Executors     | Zoznam executorov a využitie zdrojov             |
+| SQL           | SQL dopyty a ich optimalizované plány            |
+
+---
+
+## 🧪 Príklad: Spark UI pri spracovaní CSV
+
+```python
+df = spark.read.option("header", "true").csv("data/objednavky.csv")
+df.groupBy("produkt").count().show()
+```
+
+➡️ Počas vykonania vyššie uvedeného dopytu sa automaticky zobrazí job v Spark UI (4040).
+
+---
+
+## 🧰 Užitočné nastavenia SparkSession
+
+```python
+spark = SparkSession.builder     .appName("Aplikacia")     .config("spark.executor.memory", "2g")     .config("spark.sql.shuffle.partitions", "8")     .getOrCreate()
+```
+
+| Parameter                        | Popis                                           |
+|----------------------------------|--------------------------------------------------|
+| `spark.executor.memory`         | Veľkosť pamäte pre každý executor               |
+| `spark.sql.shuffle.partitions`  | Počet partícií pri agregáciách a joinoch       |
+| `spark.driver.memory`           | Pamäť pre driver proces                         |
+| `spark.master`                  | Typ spustenia (napr. `local[*]`, `yarn`, `k8s`) |
+
+---
+
+## ✅ Zhrnutie
+
+- Spark je možné spustiť lokálne aj na clustri.
+- PySpark beží v Jupyteri alebo ako samostatný skript.
+- Spark UI poskytuje cenné informácie o výpočtoch a výkone.
+- Parametre SparkSession ovplyvňujú výkon a pamäťové požiadavky.
 
 ---
 
