@@ -346,7 +346,7 @@ Táto kapitola sa venuje praktickému nastaveniu Apache Spark v lokálnom aj dis
 | Java (JDK)       | 17 alebo 21              |
 | Python           | 3.10+                     |
 | PySpark          | najnovšia (`pip install`)|
-| IDE              | VS Code, Jupyter Notebook|
+| IDE              | Jetbrains Datalore, Jupyter Notebook, Microsoft Visual Studio Code|
 
 ### ✅ Inštalácia PySpark
 
