@@ -18,7 +18,7 @@ Apache Spark je výkonný open-source engine na spracovanie veľkých dát v re�
 
 ## 📊 Čo sú veľké dáta – model 5V
 
-Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
+Veľké dáta sa v súčasnosti nedefinujú už len cez základné 3 alebo 5 znakov, ale cez **12 dimenzií (12V)**, ktoré lepšie vystihujú komplexnosť ich spracovania, hodnoty a rizík.
 
 | 🆔 **Vlastnosť** | 📌 **Popis**                                 | 💡 **Príklad**                                |
 |------------------|----------------------------------------------|-----------------------------------------------|
@@ -27,6 +27,13 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 | 🧩 Variety        | Rôznorodosť dát – štruktúrované aj neštrukt. | CSV, JSON, obrázky, logy, XML                 |
 | ✅ Veracity       | Vierohodnosť a kvalita dát                   | Chýbajúce hodnoty, nekonzistentné záznamy     |
 | 💰 Value          | Hodnota, ktorú je možné z dát získať         | Analýzy zákazníkov, predikcie, odporúčania    |
+| 🔁 Variability    | Zmena v štruktúre alebo rýchlosti                | Sezónne výkyvy v dátach, nárazové záťaže       |
+| 🧠 Visualization   | Potreba zrozumiteľného znázornenia               | Grafy, dashboardy, heatmapy                    |
+| 🕵️‍♂️ Validity      | Relevantnosť a konzistentnosť v čase            | Aktuálne vs. historické dáta, verzovanie       |
+| 🧱 Volatility     | Trvácnosť a životnosť dát                        | Krátkodobé (cache) vs. dlhodobé ukladanie      |
+| 🔐 Vulnerability  | Rizikovosť a citlivosť na bezpečnosť             | Osobné údaje, GDPR, anonymizácia               |
+| 🔄 Variance       | Rozdiely v dátach pri rovnakých vstupoch         | Rôzne senzory dávajú iné hodnoty               |
+| 🎯 Venue          | Miesto pôvodu, kontext a zdroj dát               | Mobilné zariadenia, cloud, edge, on-prem       |
 
 
 ## ⚙️ Prečo Apache Spark?
