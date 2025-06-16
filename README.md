@@ -18,7 +18,6 @@
 
 Apache Spark je výkonný open-source engine na spracovanie veľkých dát v reálnom čase. Podporuje paralelné výpočty v pamäti a je široko používaný v oblasti dátovej analytiky, strojového učenia a streamovania. Je výkonný, škálovateľný a flexibilný nástroj pre spracovanie veľkých dát. Je distribuovaný pod **licenciou Apache 2.0**
 
----
 
 ## 📊 Čo sú veľké dáta – model 5V
 
@@ -86,7 +85,6 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 | Výroba / IoT        | Prediktívna údržba, sledovanie výkonu strojov   |
 | Marketing           | Segmentácia zákazníkov, analýza správania       |
 
----
 
 ## ✅ Zhrnutie
 
@@ -205,8 +203,6 @@ df_csv.printSchema()
 df_csv.select("meno", "vek").show()
 ```
 
----
-
 ## ✅ Zhrnutie
 
 - **RDD** poskytuje nízkoúrovňovú kontrolu nad dátami, vhodné na zložité transformácie.
@@ -230,10 +226,8 @@ Spark SQL umožňuje:
 - manipulovať so štruktúrovanými dátami pomocou DataFrame API,
 - pracovať s rôznymi zdrojmi dát ako CSV, Parquet, Hive, JDBC.
 
----
 
 ## 🔧 Vytvorenie DataFrame tabuľky
-
 ### 🧪 Príklad: Načítanie CSV a registrácia ako tabuľka
 
 ```python
@@ -318,7 +312,6 @@ SELECT meno,
 FROM osoby
 ```
 
----
 
 ## ✅ Zhrnutie
 
@@ -331,10 +324,8 @@ FROM osoby
 
 <a name="#nastavenie"></a>
 # ⚙️ 4. Nastavenie prostredia a Spark UI
-
 Táto kapitola sa venuje praktickému nastaveniu Apache Spark v lokálnom aj distribuovanom režime. Ukážeme si tiež, ako funguje Spark UI – webové rozhranie pre sledovanie a ladenie výpočtov.
 
----
 
 ## 💻 Požiadavky a príprava prostredia
 
@@ -434,7 +425,6 @@ spark = SparkSession.builder     .appName("Aplikacia")     .config("spark.execut
 | `spark.driver.memory`           | Pamäť pre driver proces                         |
 | `spark.master`                  | Typ spustenia (napr. `local[*]`, `yarn`, `k8s`) |
 
----
 
 ## ✅ Zhrnutie
 
@@ -450,7 +440,6 @@ a name="transformacie"></a>
 
 Apache Spark umožňuje efektívne načítanie veľkého množstva dát z rôznych zdrojov a ich spracovanie pomocou transformácií. V tejto kapitole sa zameriame na praktické príklady práce so súbormi a najčastejšie transformácie nad DataFrame.
 
----
 
 ## 📂 Podporované dátové formáty
 
@@ -484,7 +473,7 @@ Spark transformácie sú **lenivé** – nevykonávajú sa ihneď, ale až pri a
 |------------------|----------------------------------------|---------------------------------------------|
 | `select()`       | Výber stĺpcov                         | `df.select("produkt", "cena")`              |
 | `filter()`       | Filtrovanie riadkov                   | `df.filter(df["cena"] > 100)`               |
-| `withColumn()`   | Pridanie nového stĺpca                | `df.withColumn("DPH", df["cena"] * 0.2)`     |
+| `withColumn()`   | Pridanie nového stĺpca                | `df.withColumn("DPH", df["cena"] * 0.23)`     |
 | `drop()`         | Odstránenie stĺpca                    | `df.drop("nepotrebny_stlpec")`              |
 | `distinct()`     | Odstránenie duplicitných riadkov      | `df.distinct()`                             |
 | `groupBy()`      | Skupinové operácie                    | `df.groupBy("kategoria").count()`           |
@@ -495,7 +484,7 @@ Spark transformácie sú **lenivé** – nevykonávajú sa ihneď, ale až pri a
 ## 🧪 Príklad: Vytvorenie nového stĺpca s DPH
 
 ```python
-df = df.withColumn("cena_s_DPH", df["cena"] * 1.2)
+df = df.withColumn("cena_s_DPH", df["cena"] * 1.23)
 df.select("produkt", "cena", "cena_s_DPH").show(5)
 ```
 
@@ -515,7 +504,6 @@ df.groupBy("kategoria").agg({"cena": "avg", "id": "count"}).show()
 df.filter(df["cena"] > 100).orderBy("cena", ascending=False).show(10)
 ```
 
----
 
 ## 📦 Ukladanie transformovaných dát
 
@@ -525,7 +513,6 @@ df.filter(df["cena"] > 100).orderBy("cena", ascending=False).show(10)
 | Parquet  | `df.write.parquet()`                     | `df.write.parquet("output/data")`            |
 | JSON     | `df.write.json()`                        | `df.write.json("output/produkty.json")`      |
 
----
 
 ## ✅ Zhrnutie
 
@@ -541,8 +528,6 @@ df.filter(df["cena"] > 100).orderBy("cena", ascending=False).show(10)
 
 V tejto záverečnej kapitole nájdete odporúčané knihy, dokumentáciu, online kurzy a nástroje, ktoré vám pomôžu rozšíriť znalosti o Apache Spark. Tiež uvedieme odporúčania pre prax.
 
----
-
 ## 📘 Odporúčané knihy
 
 | Názov | Autor | Popis |
@@ -551,8 +536,6 @@ V tejto záverečnej kapitole nájdete odporúčané knihy, dokumentáciu, onlin
 | *High Performance Spark* | Holden Karau | Optimalizácia výpočtov, efektívne transformácie a výkon |
 | *Spark in Action* | Jean-Georges Perrin | Praktické príklady a vysvetlenie základov pre začiatočníkov |
 | *Streaming Systems* | Tyler Akidau | Teoretický základ pre spracovanie dátových tokov v reálnom čase |
-
----
 
 ## 🌐 Online dokumentácia a nástroje
 
@@ -563,8 +546,6 @@ V tejto záverečnej kapitole nájdete odporúčané knihy, dokumentáciu, onlin
 | Spark GitHub | [https://github.com/apache/spark](https://github.com/apache/spark) |
 | Databricks Spark Guide | [https://docs.databricks.com/](https://docs.databricks.com/) |
 
----
-
 ## 🎓 Kurzy a interaktívne platformy
 
 | Platforma | Kurz / Odkaz |
@@ -573,16 +554,12 @@ V tejto záverečnej kapitole nájdete odporúčané knihy, dokumentáciu, onlin
 | Datacamp  | Introduction to PySpark |
 | Coursera  | Big Data Analysis with Scala and Spark |
 
----
-
 ## 🛠️ Vývojové prostredia
 
 - **Jupyter Notebook / Lab** – ideálne pre rýchle experimentovanie s PySpark
 - **VS Code** – podpora PySpark cez rozšírenia
 - **JetBrains DataSpell** – profesionálne IDE na prácu s dátami
 - **Databricks Community Edition** – bezplatná platforma pre Spark a ML
-
----
 
 ## ✅ Odporúčania pre prax
 
