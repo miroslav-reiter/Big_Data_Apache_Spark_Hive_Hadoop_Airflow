@@ -2,8 +2,6 @@
 
 > Praktické kurzy – RDD, DataFrame, SparkSQL a distribuované spracovanie dát
 
----
-
 ## 📘 Obsah kurzu
 01. [**🔍 Úvod do veľkých dát a Apache Spark**](#uvod-spark)
 02. [**🧱 Práca s RDD a DataFrame**](#rdd-dataframe)
@@ -18,7 +16,6 @@
 
 Apache Spark je výkonný open-source engine na spracovanie veľkých dát v reálnom čase. Podporuje paralelné výpočty v pamäti a je široko používaný v oblasti dátovej analytiky, strojového učenia a streamovania. Je výkonný, škálovateľný a flexibilný nástroj pre spracovanie veľkých dát. Je distribuovaný pod **licenciou Apache 2.0**
 
-
 ## 📊 Čo sú veľké dáta – model 5V
 
 Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
@@ -31,7 +28,6 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 | ✅ Veracity       | Vierohodnosť a kvalita dát                   | Chýbajúce hodnoty, nekonzistentné záznamy     |
 | 💰 Value          | Hodnota, ktorú je možné z dát získať         | Analýzy zákazníkov, predikcie, odporúčania    |
 
----
 
 ## ⚙️ Prečo Apache Spark?
 
@@ -43,7 +39,6 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 | 📈 Využitie          | Batch, stream, interaktívne, strojové učenie        |
 | 📚 Ekosystém         | Bohatá dokumentácia, rozšírenia, kompatibilita     |
 
----
 
 ## 🏗️ Architektúra Apache Spark
 
@@ -54,7 +49,6 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 
 🌀 **DAG (Directed Acyclic Graph)** – reprezentuje logiku výpočtu ako necyklický graf závislostí.
 
----
 
 ## 🧱 Moduly Apache Spark
 
@@ -66,14 +60,12 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 | `Spark Streaming`| Streamové (real-time) spracovanie                |
 | `GraphX`         | Grafové výpočty a analýzy                        |
 
----
 
 ## 📦 Podporované formáty a zdroje dát
 
 - **Formáty**: CSV, JSON, Parquet, Avro, ORC
 - **Zdroje**: HDFS, S3, JDBC, Kafka, lokálne súbory, NoSQL databázy
 
----
 
 ## 🧠 Príklady využitia
 
@@ -99,7 +91,6 @@ Veľké dáta sú charakterizované nasledujúcimi 5 vlastnosťami:
 
 Apache Spark umožňuje dve hlavné abstrakcie pre prácu s dátami: **RDD (Resilient Distributed Dataset)** a **DataFrame**. V tejto kapitole si vysvetlíme rozdiely, výhody a praktické príklady použitia oboch.
 
----
 
 ## 🧠 Čo je RDD?
 
@@ -120,8 +111,6 @@ rdd_squared = rdd.map(lambda x: x * x)
 print(rdd_squared.collect())  # Výstup: [1, 4, 9, 16, 25]
 ```
 
----
-
 ## 📄 Transformácie a akcie na RDD
 
 | Typ operácie   | Príklad           | Popis                                       |
@@ -129,7 +118,6 @@ print(rdd_squared.collect())  # Výstup: [1, 4, 9, 16, 25]
 | Transformácia  | `map()`, `filter()`| Vytvára nový RDD                            |
 | Akcia          | `collect()`, `count()` | Spustí výpočet a vráti výsledok do drivera  |
 
----
 
 ## 📘 Čo je DataFrame?
 
@@ -151,7 +139,6 @@ df = spark.createDataFrame([Row(meno="Anna", vek=25), Row(meno="Ján", vek=32)])
 df.show()
 ```
 
----
 
 ## 🔁 Bežné operácie s DataFrame
 
@@ -167,7 +154,6 @@ df.groupBy("vek").count().show()
 | Agregácia         | `df.groupBy("vek").count()`                | Skupinové výpočty               |
 | Triedenie         | `df.orderBy("vek", ascending=False)`       | Zoradenie podľa hodnoty         |
 
----
 
 ## 🔁 Porovnanie RDD vs. DataFrame
 
@@ -179,7 +165,6 @@ df.groupBy("vek").count().show()
 | Čitateľnosť           | Nižšia (viac kódu)                   | Vyššia (kompaktnejší kód)          |
 | Prístup k schéme      | Nie                                  | Áno                                |
 
----
 
 ## 🔃 Prechod z RDD na DataFrame a späť
 
@@ -193,7 +178,6 @@ df = spark.createDataFrame(rdd)
 rdd2 = df.rdd
 ```
 
----
 
 ## 🧪 Ukážka práce s CSV súborom ako DataFrame
 
@@ -216,7 +200,6 @@ df_csv.select("meno", "vek").show()
 
 Spark SQL je modul Apache Spark, ktorý umožňuje spracovanie štruktúrovaných dát pomocou SQL syntaxe alebo DataFrame API. Kombinuje výkonnosť Spark enginu s jednoduchosťou SQL.
 
----
 
 ## 📋 Čo je Spark SQL?
 
@@ -237,7 +220,6 @@ df.createOrReplaceTempView("objednavky")
 
 Po registrácii môžete nad `objednavky` spúšťať SQL dopyty.
 
----
 
 ## 🧪 Príklady SQL dopytov
 
@@ -252,8 +234,6 @@ spark.sql("SELECT * FROM objednavky WHERE cena > 100").show()
 spark.sql("SELECT produkt, COUNT(*) AS pocet FROM objednavky GROUP BY produkt").show()
 ```
 
----
-
 ## 📊 Porovnanie: SQL vs. DataFrame API
 
 | Operácia                     | SQL syntax                                                    | DataFrame API                                 |
@@ -263,8 +243,6 @@ spark.sql("SELECT produkt, COUNT(*) AS pocet FROM objednavky GROUP BY produkt").
 | Agregácia                    | `SELECT AVG(cena) FROM objednavky`                            | `df.agg({"cena": "avg"})`                     |
 | Zoskupenie                   | `SELECT produkt, COUNT(*) FROM objednavky GROUP BY produkt`   | `df.groupBy("produkt").count()`              |
 | Triedenie                    | `SELECT * FROM objednavky ORDER BY datum DESC`                | `df.orderBy("datum", ascending=False)`        |
-
----
 
 ## 🗃️ Práca so štruktúrovanými formátmi
 
@@ -286,7 +264,6 @@ df_json = spark.read.json("data/produkty.json")
 df_parquet = spark.read.parquet("data/transakcie.parquet")
 ```
 
----
 
 ## 🧠 Optimalizácia Spark SQL
 
@@ -296,7 +273,6 @@ df_parquet = spark.read.parquet("data/transakcie.parquet")
 
 ➡️ Tieto mechanizmy výrazne zvyšujú výkon pri spracovaní veľkých dát.
 
----
 
 ## 🧪 Pokročilé SQL: JOIN, funkcie, CASE
 
@@ -311,7 +287,6 @@ SELECT meno,
        CASE WHEN vek >= 18 THEN 'Dospelý' ELSE 'Dieťa' END AS typ
 FROM osoby
 ```
-
 
 ## ✅ Zhrnutie
 
@@ -345,7 +320,6 @@ Táto kapitola sa venuje praktickému nastaveniu Apache Spark v lokálnom aj dis
 pip install pyspark
 ```
 
----
 
 ## 🗂️ Premenné prostredia
 
@@ -361,7 +335,6 @@ Na Windows:
 set JAVA_HOME=C:\Program Files\Java\jdk-17
 ```
 
----
 
 ## 🚀 Spustenie SparkSession v Pythone
 
@@ -378,7 +351,6 @@ print(spark.version)
 print(spark.sparkContext.appName)
 ```
 
----
 
 ## 🌐 Spark UI – Webové rozhranie
 
@@ -399,7 +371,6 @@ http://localhost:4040
 | Executors     | Zoznam executorov a využitie zdrojov             |
 | SQL           | SQL dopyty a ich optimalizované plány            |
 
----
 
 ## 🧪 Príklad: Spark UI pri spracovaní CSV
 
@@ -410,7 +381,6 @@ df.groupBy("produkt").count().show()
 
 ➡️ Počas vykonania vyššie uvedeného dopytu sa automaticky zobrazí job v Spark UI (4040).
 
----
 
 ## 🧰 Užitočné nastavenia SparkSession
 
@@ -451,7 +421,6 @@ Apache Spark umožňuje efektívne načítanie veľkého množstva dát z rôzny
 | ORC      | `spark.read.orc()`                      | `spark.read.orc("data/data.orc")`            |
 | JDBC     | `spark.read.jdbc()`                     | Načítanie z relačnej databázy                |
 
----
 
 ## 📥 Príklad: Načítanie CSV súboru
 
@@ -460,8 +429,6 @@ df = spark.read.option("header", True).option("inferSchema", True).csv("data/obj
 df.printSchema()
 df.show(5)
 ```
-
----
 
 ## 🔄 Transformácie DataFrame
 
@@ -479,7 +446,6 @@ Spark transformácie sú **lenivé** – nevykonávajú sa ihneď, ale až pri a
 | `groupBy()`      | Skupinové operácie                    | `df.groupBy("kategoria").count()`           |
 | `orderBy()`      | Zoradenie                             | `df.orderBy("cena", ascending=False)`       |
 
----
 
 ## 🧪 Príklad: Vytvorenie nového stĺpca s DPH
 
@@ -488,7 +454,6 @@ df = df.withColumn("cena_s_DPH", df["cena"] * 1.23)
 df.select("produkt", "cena", "cena_s_DPH").show(5)
 ```
 
----
 
 ## 🧪 Príklad: Agregácia podľa kategórie
 
@@ -496,7 +461,6 @@ df.select("produkt", "cena", "cena_s_DPH").show(5)
 df.groupBy("kategoria").agg({"cena": "avg", "id": "count"}).show()
 ```
 
----
 
 ## 🧪 Príklad: Filtrovanie a triedenie
 
