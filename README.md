@@ -12,7 +12,13 @@
 
 ---
 <a name="uvod-spark"></a>
-# 🔍 1. Úvod do veľkých dát a nástroje pre spracovanie veľkých dát (pache Spark, Hive, Apache Hadoop, Apache Airflow)
+# 🔍 1. Úvod do veľkých dát a nástroje pre spracovanie veľkých dát (Apache Spark, Hive, Apache Hadoop, Apache Airflow)
+
+- **Big Data** riešia spracovanie dát, ktoré sú príliš veľké, rýchle alebo rôznorodé pre klasické databázy.
+- **Apache Spark** je výkonný engine na rýchle spracovanie.
+- **Hive** umožňuje analytikom používať SQL nad dátami v HDFS.
+- **Hadoop** poskytuje základnú infraštruktúru pre ukladanie a dávkové výpočty.
+- **Airflow** je určený na plánovanie a orchestráciu dátových procesov.
 
 ## 📊 Čo sú veľké dáta – model 12V a na čo sú dobré?
 
