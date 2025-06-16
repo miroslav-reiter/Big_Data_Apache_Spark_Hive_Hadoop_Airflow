@@ -12,13 +12,11 @@
 
 ---
 <a name="uvod-spark"></a>
-# 🔍 1. Úvod do veľkých dát a Apache Spark
+# 🔍 1. Úvod do veľkých dát a nástroje pre spracovanie veľkých dát (pache Spark, Hive, Apache Hadoop, Apache Airflow)
 
-Apache Spark je výkonný open-source engine na spracovanie veľkých dát v reálnom čase. Podporuje paralelné výpočty v pamäti a je široko používaný v oblasti dátovej analytiky, strojového učenia a streamovania. Je výkonný, škálovateľný a flexibilný nástroj pre spracovanie veľkých dát. Je distribuovaný pod **licenciou Apache 2.0**
+## 📊 Čo sú veľké dáta – model 12V a na čo sú dobré?
 
-## 📊 Čo sú veľké dáta – model 5V
-
-Veľké dáta sa v súčasnosti nedefinujú už len cez základné 3 alebo 5 znakov, ale cez **12 dimenzií (12V)**, ktoré lepšie vystihujú komplexnosť ich spracovania, hodnoty a rizík.
+**Big Data** označuje veľké objemy dát, ktoré sa vyznačujú vysokou **rýchlosťou**, **objemom**, **rôznorodosťou** a často aj **nízkou kvalitou**. Veľké dáta sa v súčasnosti nedefinujú už len cez základné 3 alebo 5 znakov, ale cez **12 dimenzií (12V)**, ktoré lepšie vystihujú komplexnosť ich spracovania, hodnoty a rizík.
 
 | 🆔 **Vlastnosť** | 📌 **Popis**                                 | 💡 **Príklad**                                |
 |------------------|----------------------------------------------|-----------------------------------------------|
@@ -34,6 +32,65 @@ Veľké dáta sa v súčasnosti nedefinujú už len cez základné 3 alebo 5 zna
 | 🔐 Vulnerability  | Rizikovosť a citlivosť na bezpečnosť             | Osobné údaje, GDPR, anonymizácia               |
 | 🔄 Variance       | Rozdiely v dátach pri rovnakých vstupoch         | Rôzne senzory dávajú iné hodnoty               |
 | 🎯 Venue          | Miesto pôvodu, kontext a zdroj dát               | Mobilné zariadenia, cloud, edge, on-prem       |
+
+### 🎯 Na čo sa Big Data používajú?
+
+- Analýza správania zákazníkov (marketing, e-commerce)
+- Detekcia podvodov (banky, poistenie)
+- Predikcia dopytu a spotreby (výroba, logistika)
+- Real-time monitoring (IoT, zdravotníctvo)
+- Automatizované rozhodovanie (AI, ML)
+
+## ⚙️ Čo je to Apache Spark a na čo je dobrý?
+
+**Apache Spark** je distribuovaný engine pre spracovanie veľkých dát v pamäti (in-memory). Apache Spark je výkonný open-source engine na spracovanie veľkých dát v reálnom čase. Podporuje paralelné výpočty v pamäti a je široko používaný v oblasti dátovej analytiky, strojového učenia a streamovania. Je výkonný, škálovateľný a flexibilný nástroj pre spracovanie veľkých dát. Je distribuovaný pod **licenciou Apache 2.0**
+
+### ✅ Na čo sa používa?
+- Rýchle dávkové a interaktívne spracovanie
+- Strojové učenie (MLlib)
+- Práca s DataFrame a SQL
+- Streamovanie dát v reálnom čase
+
+## 🐝 Čo je to Apache Hive a na čo je dobrý?
+
+**Apache Hive** je SQL-like vrstva nad veľkými dátami uloženými v HDFS alebo iných formátoch.
+
+### ✅ Na čo sa používa?
+- Dopytovanie nad dátami pomocou SQL
+- Vytváranie tabuliek, ETL procesy
+- Integrácia s Hadoopom a Spark SQL
+- Reporting a analýzy nad štruktúrovanými dátami
+
+
+## 🐘 Čo je to Apache Hadoop a na čo je dobrý?
+**Apache Hadoop** je ekosystém pre distribuované ukladanie a spracovanie veľkých dát.
+
+### ✅ Na čo sa používa?
+- Ukladanie dát pomocou **HDFS** (Hadoop Distributed File System)
+- Spracovanie pomocou **MapReduce**
+- Využíva sa ako základná vrstva pre Spark, Hive, HBase
+- Umožňuje horizontálne škálovanie (viac serverov)
+
+
+## 🧭 Čo je to Apache Airflow a na čo je dobrý?
+
+**Apache Airflow** je nástroj na plánovanie a riadenie dátových workflowov (DAG – Directed Acyclic Graphs).
+
+### ✅ Na čo sa používa?
+- Automatizácia ETL/ELT procesov
+- Plánovanie Spark/Hive/Hadoop úloh
+- Riadenie závislostí medzi úlohami
+- Vizualizácia a monitoring workflowov
+
+
+## 📊 Porovnávacia tabuľka: Apache nástroje pre Big Data
+
+| Nástroj         | Hlavné využitie                       | Technológia               | Výhody                                 | Nevýhody                                 |
+|------------------|----------------------------------------|----------------------------|----------------------------------------|------------------------------------------|
+| **Apache Spark** | Rýchle výpočty, ML, stream, SQL       | In-memory distribúcia     | Výkon, univerzálnosť, škálovateľnosť  | Vyššie nároky na pamäť                   |
+| **Apache Hive**  | SQL nad veľkými dátami (HDFS)         | SQL-like nad Hadoop       | Známa syntax, vhodné na reporty        | Pomalšie, nie real-time                  |
+| **Apache Hadoop**| Ukladanie a dávkové spracovanie       | HDFS + MapReduce          | Robustné, osvedčené riešenie           | Staršie, pomalšie ako Spark              |
+| **Apache Airflow**| Riadenie workflowov a plánovanie     | Python, DAG workflow      | Modularita, monitoring, REST API       | Vyššia krivka učenia, komplexné ladenie  |
 
 
 ## ⚙️ Prečo Apache Spark?
